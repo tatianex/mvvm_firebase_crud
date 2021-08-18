@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "22822093028",
+    "project_id": "mvvm-kotlin-bd5b7",
+    "storage_bucket": "mvvm-kotlin-bd5b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22822093028:android:389938e0264ec2c6d4acf1",
+        "android_client_info": {
+          "package_name": "com.proway.mvvm_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22822093028-on63lhv0lq6imskasks0gh6arvq9f26t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj62MYwtElvApdMM-6dCqyYR2kru5G9Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22822093028-on63lhv0lq6imskasks0gh6arvq9f26t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22822093028:android:f18b6885bc013c3cd4acf1",
+        "android_client_info": {
+          "package_name": "com.proway.mvvm_solo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22822093028-on63lhv0lq6imskasks0gh6arvq9f26t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj62MYwtElvApdMM-6dCqyYR2kru5G9Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22822093028-on63lhv0lq6imskasks0gh6arvq9f26t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
