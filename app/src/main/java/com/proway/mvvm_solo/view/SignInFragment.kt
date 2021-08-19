@@ -14,10 +14,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseUser
 import com.proway.mvvm_solo.MainActivity
 import com.proway.mvvm_solo.R
+import com.proway.mvvm_solo.databinding.SignInFragmentBinding
 import com.proway.mvvm_solo.utils.replaceView
 import com.proway.mvvm_solo.view_model.SignInViewModel
 
 class SignInFragment : Fragment(R.layout.sign_in_fragment) {
+
+    private lateinit var binding: SignInFragmentBinding
 
     companion object {
         fun newInstance() = SignInFragment()
@@ -34,15 +37,22 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        binding = SignInFragmentBinding.bind(view)
 
         viewModel.error.observe(viewLifecycleOwner, observerError)
         viewModel.user.observe(viewLifecycleOwner, observerUser)
 
         view.findViewById<Button>(R.id.loginButton).setOnClickListener {
-            val inputEmail = view.findViewById<EditText>(R.id.inputEmailEditText)
-            val inputPassword = view.findViewById<EditText>(R.id.inputPassowordEditText)
+
+            //val inputEmail = view.findViewById<EditText>(R.id.inputEmailEditText)
+            val inputEmail = binding.inputEmailEditText
+
+            //val inputPassword = view.findViewById<EditText>(R.id.inputPassowordEditText)
+            val inputPassword = binding.inputPassowordEditText
+
             if (!inputEmail.text.isNullOrEmpty() && !inputPassword.text.isNullOrEmpty()) {
                 viewModel.signIn(
                     inputEmail.text.toString(),

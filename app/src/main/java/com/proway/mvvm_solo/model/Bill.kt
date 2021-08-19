@@ -1,11 +1,12 @@
 package com.proway.mvvm_solo.model
 
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 data class Bill(
 
-    val id: String?,
+    var uid: String?,
     val name: String?,
     val price: Double?
 ) {
@@ -14,18 +15,18 @@ data class Bill(
 
         fun fromData(snapshot: QueryDocumentSnapshot): Bill {
             return Bill(
-                id = snapshot.id,
+                uid = snapshot.id,
                 name = snapshot.data["name"] as? String,
                 price = snapshot.data["price"] as? Double
             )
         }
 
-        fun fromDocument(doc: DocumentReference): Bill {
+        fun fromDocument(doc: DocumentSnapshot): Bill {
 
             return Bill(
-                id = doc.id,
-                name = null,
-                price = null
+                uid = doc.id,
+                name = doc["name"] as? String,
+                price = doc["price"] as? Double
             )
         }
     }

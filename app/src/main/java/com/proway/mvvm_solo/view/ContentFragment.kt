@@ -1,5 +1,6 @@
 package com.proway.mvvm_solo.view
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.auth.FirebaseUser
+import com.proway.mvvm_solo.DetailActivity
 import com.proway.mvvm_solo.R
-import com.proway.mvvm_solo.adapter.AccountsAdapter
+import com.proway.mvvm_solo.adapter.BillsAdapter
 import com.proway.mvvm_solo.model.Bill
 import com.proway.mvvm_solo.utils.replaceView
 import com.proway.mvvm_solo.view_model.ContentViewModel
@@ -28,7 +30,12 @@ class ContentFragment : Fragment(R.layout.content_fragment) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var userEmailTextView: TextView
-    private val adapter = AccountsAdapter()
+    private val adapter = BillsAdapter() { bill ->
+        Intent(requireActivity(), DetailActivity::class.java).apply {
+            putExtra("bill_id", bill.uid)
+            startActivity(this)
+        }
+    }
 
     val observerAccounts = Observer<List<Bill>> {
         adapter.refresh(it)

@@ -16,10 +16,23 @@ class BillRepository {
 
                 val listOf = arrayListOf<Bill>()
                 result.forEach {
-                    val account = Bill.fromData(it)
-                    listOf.add(account)
+                    val bill = Bill.fromData(it)
+                    listOf.add(bill)
                 }
                 callback(listOf, null)
+            }
+            .addOnFailureListener { exception ->
+                callback(null, exception.message)
+            }
+    }
+
+    fun fetchBill(uid: String, callback: (Bill?, String?) -> Unit) {
+        dataBase.collection(BILLS_COLLECTION)
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                val bill = Bill.fromDocument(document)
+                callback(bill, null)
             }
             .addOnFailureListener { exception ->
                 callback(null, exception.message)
@@ -30,18 +43,17 @@ class BillRepository {
         dataBase.collection(BILLS_COLLECTION)
             .add(bill)
             .addOnSuccessListener {
-                Bill.fromDocument(it).apply {
-                    callback(this, null)
-                }
+                callback(bill.apply {
+                    uid = it.id }, null)
             }
             .addOnFailureListener { exception ->
                 callback(null, exception.message)
             }
     }
 
-    fun deleteBill(id: String, callback: (Boolean) -> Unit) {
+    fun deleteBill(uid: String, callback: (Boolean) -> Unit) {
         dataBase.collection(BILLS_COLLECTION)
-            .document(id)
+            .document(uid)
             .delete()
             .addOnSuccessListener {
                 callback(true)
